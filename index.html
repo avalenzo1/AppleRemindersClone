@@ -17,29 +17,28 @@
         <input class="form-control" id="search-query" placeholder="Search" />
 
         <ul class="filter-options">
-          
           <li>
-            <input type="radio" id="filter-by-toda" name="filter" value="Today">
-            <label for="html">Today</label>
+            <input type="radio" id="filter-by-today" name="filter" value="Today" checked>
+            <label class="btn" for="filter-by-today">Today</label>
           </li>
 
           <li>
-            <input type="radio" id="html" name="filter" value="Scheduled">
-            <label for="html">Scheduled</label>
+            <input type="radio" id="filter-by-scheduled" name="filter" value="Scheduled">
+            <label class="btn" for="filter-by-scheduled">Scheduled</label>
           </li>
           <li>
-            <input type="radio" id="html" name="filter" value="All">
-            <label for="html">All</label>
+            <input type="radio" id="filter-by-all" name="filter" value="All">
+            <label class="btn" for="filter-by-all">All</label>
           </li>
           <li>
-            <input type="radio" id="html" name="filter" value="Completed">
-            <label for="html">Completed</label>
+            <input type="radio" id="filter-by-completed" name="filter" value="Completed">
+            <label class="btn" for="filter-by-completed">Completed</label>
           </li>
         </ul>
 
-        <div class="list-options">
+        <div style="flex: 1;">
           <span>My Lists</span>
-          <ul>
+          <ul class="list-options">
             <li>
               <button class="btn">Reminders</button>
             </li>
@@ -51,10 +50,8 @@
       
       <main class="main">
         <nav class="header">
-          <div>
-            <button class="btn">
-              +
-            </button>
+          <div style="display: flex; justify-content: flex-end;">
+            <button class="btn">+</button>
           </div>
           
           <h1>

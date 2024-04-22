@@ -87,8 +87,17 @@ body {
   width: 100%;
 }
 
+.filter-options .btn:checked {
+  background-color: blue;
+}
+
 .list-options {
-  flex: 1;
+  padding: 0;
+  list-style-type: none;
+}
+
+.list-options .btn {
+  width: 100%;
 }
 
 .main {
