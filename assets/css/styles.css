@@ -87,6 +87,10 @@ body {
   width: 100%;
 }
 
+.list-options {
+  flex: 1;
+}
+
 .main {
   flex: 1;
   background: rgb(var(--background-color-rgb));
