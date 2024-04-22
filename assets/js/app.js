@@ -11,12 +11,19 @@ reminders.lists.all = () => {
   
 };
 
+reminders.lists.exists = (name) => {
+  return localStorage.getItem(`list-${name}`) !== null;
+};
+
 reminders.lists.get = (name) => {
   
 };
 
 reminders.lists.create = (name) => {
-  
+  if (!reminders.lists.exists(name))
+  {
+    localStorage.setItem(`list-${name}`, '{}');
+  }
 };
 
 reminders.lists.remove = (name) => {
