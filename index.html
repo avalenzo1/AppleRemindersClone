@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Reminders</title>
+    <link href="/assets/css/styles.css" rel="stylesheet">
   </head>
 
   <body>
-    <div>
-      <nav role="navigation" aria-label="Main">
+    <div class="wrapper">
+      <nav class="navbar" role="navigation" aria-label="Main">
         <input id="search-query" placeholder="Search" />
 
-        <ul class="">
+        <ul class="filter-options">
           <li>
             <button>Today</button>
           </li>
@@ -25,18 +26,20 @@
           </li>
         </ul>
 
-        My Lists
-        <ul>
-          <li>
-            <button>Tasks</button>
-          </li>
-        </ul>
+        <div class="list-options">
+          <span>My Lists</span>
+          <ul>
+            <li>
+              <button>Tasks</button>
+            </li>
+          </ul>
+        </div>
         
         <button>Add List</button>
       </nav>
       
-      <div>
-        <nav>
+      <main class="main">
+        <nav class="header">
           <div>
             <button>
               +
@@ -49,7 +52,7 @@
         </nav>
         
         
-      </div>
+      </main>
     </div>
   </body>
 </html>
