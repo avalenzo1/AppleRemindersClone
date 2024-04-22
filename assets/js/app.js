@@ -2,3 +2,33 @@ console.log("%c\uf8ff Reminders Clone", "font-family: 'SF Pro Display', sans-ser
 
 var reminders = reminders || {};
 
+reminders.lists = {};
+
+/**
+ * Returns all list names
+*/
+reminders.lists.all = () => {
+  
+};
+
+reminders.lists.get = (name) => {
+  
+};
+
+reminders.lists.create = (name) => {
+  
+};
+
+reminders.lists.remove = (name) => {
+  
+};
+
+reminders.init = () => {
+  console.log(localStorage);
+  
+  if (localStorage.length == 0) {
+    reminders.lists.create("Reminders");
+  }
+};
+
+document.addEventListener("DOMContentLoaded", reminders.init);
