@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Reminders</title>
-    
+
     <link
       href="https://fonts.cdnfonts.com/css/sf-pro-display"
       rel="stylesheet"
     />
-    <link href="/assets/css/styles.css" rel="stylesheet">
+    <link href="/assets/css/styles.css" rel="stylesheet" />
     <script src="/assets/js/app.js" defer></script>
   </head>
 
@@ -18,46 +18,73 @@
 
         <ul class="filter-options">
           <li>
-            <input type="radio" id="filter-by-today" name="filter" value="Today" hidden checked>
-            <label class="btn" for="filter-by-today">Today</label>
+            <input
+              type="radio"
+              id="filter-by-today"
+              name="filter"
+              value="Today"
+              hidden
+              checked
+            />
+            <label class="btn" for="filter-by-today">
+              <div style="display: grid; gap: 0.5rem;">
+                <object type="image/svg+xml" data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/calendar.circle.fill.svg?v=1713903046560" class="sf-symbol"></object>
+                <span>Today</span>
+              </div>
+              <span style="font-size: large; font-weight: bold;">0</span>
+            </label>
           </li>
 
           <li>
-            <input type="radio" id="filter-by-scheduled" name="filter" value="Scheduled" hidden>
+            <input
+              type="radio"
+              id="filter-by-scheduled"
+              name="filter"
+              value="Scheduled"
+              hidden
+            />
             <label class="btn" for="filter-by-scheduled">Scheduled</label>
           </li>
           <li>
-            <input type="radio" id="filter-by-all" name="filter" value="All" hidden>
+            <input
+              type="radio"
+              id="filter-by-all"
+              name="filter"
+              value="All"
+              hidden
+            />
             <label class="btn" for="filter-by-all">All</label>
           </li>
           <li>
-            <input type="radio" id="filter-by-completed" name="filter" value="Completed" hidden>
+            <input
+              type="radio"
+              id="filter-by-completed"
+              name="filter"
+              value="Completed"
+              hidden
+            />
             <label class="btn" for="filter-by-completed">Completed</label>
           </li>
         </ul>
 
-        <div style="flex: 1;">
+        <div style="flex: 1">
           <span>My Lists</span>
-          <ul class="list-options" id="list-options">
-            
-          </ul>
+          <ul class="list-options" id="list-options"></ul>
         </div>
-        
+
         <button class="btn">Add List</button>
       </nav>
-      
+
       <main class="main">
         <nav class="header">
-          <div style="display: flex; justify-content: flex-end;">
+          <div style="display: flex; justify-content: flex-end">
             <button class="btn">+</button>
           </div>
-          
+
           <h1>
             <span id="filter-by-header-title"></span>
           </h1>
         </nav>
-        
-        
       </main>
     </div>
   </body>
