@@ -234,6 +234,10 @@ input[type="radio"]:checked+.btn {
 
 .list-options .btn {
   width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+  flex-direction: row;
+  align-items: center;
 }
 
 .main {

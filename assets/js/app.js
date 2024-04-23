@@ -55,7 +55,22 @@ Reminders.UserInterface.displayLists = () => {
     const li = `
     <li>
       <input type="radio" id="filter-by-${name}" name="filter" value="${name}" hidden>
-      <label class="btn" for="filter-by-${name}">${name}</label>
+      <label class="btn" for="filter-by-${name}">
+        <div style="
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+">
+          <object
+            type="image/svg+xml"
+            data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/list.bullet.circle.fill.svg?v=1713913715875"
+            class="sf-symbol"
+          ></object>
+          <span>${name}</span>
+        </div>
+        
+        <span>0</span>
+      </label>
     </li>
     `;
     
