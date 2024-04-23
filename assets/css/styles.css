@@ -41,7 +41,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  justify-content: center;
+  justify-content: space-between;
   z-index: 99;
   font-size: small;
 }
@@ -99,7 +99,6 @@ body {
   gap: 2rem;
   align-items: flex-start;
   border-radius: 0.75rem;
-  justify-content: space-between;
   padding: 0.55rem;
 }
 

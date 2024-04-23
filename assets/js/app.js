@@ -46,9 +46,9 @@ Reminders.Lists.create = (name) => {
 
 Reminders.Lists.remove = (name) => {};
 
-Reminders.UI = {};
+Reminders.UserInterface = {};
 
-Reminders.UI.displayLists = () => {
+Reminders.UserInterface.displayLists = () => {
   const ul = document.getElementById("list-options");
   
   Reminders.Lists.all().forEach(name => {
@@ -63,27 +63,33 @@ Reminders.UI.displayLists = () => {
   });
 };
 
-Reminders.UI.createEvents = () => {
-  // Select all radio inputs with the name 'color'
+Reminders.UserInterface.
+
+Reminders.UserInterface.initialize = () => {
+  Reminders.UserInterface.displayLists();
+};
+
+Reminders.Events = {};
+
+Reminders.Events.initialize = () => {
   const radios = document.querySelectorAll('input[name="filter"]');
   
   for (let i = 0; i < radios.length; i++)
   {
     let radio = radios[i];
     
-    radio.checked = true;
-    
-    console.log(radio)
+    radio.addEventListener("click", Reminders.UserInterface.);
   }
 };
 
-Reminders.init = () => {
+Reminders.initialize = () => {
   if (localStorage.length == 0) {
     Reminders.Lists.create("Reminders");
   }
   
-  Reminders.UI.createEvents();
-  Reminders.UI.displayLists();
+  Reminders.UserInterface.initialize();
+  Reminders.Events.initialize();
+  
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.init);
