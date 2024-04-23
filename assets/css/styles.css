@@ -4,14 +4,19 @@
 }
 
 :root {
-  --background-color-rgb: 33, 33, 36;
+  --background-color-rgb: 31, 31, 31;
   --background-color: rgb(var(--background-color-rgb));
+  
+  --label-primary-rgb: 59, 130, 247;
+  --label-primary: rgb(var(--label-primary-rgb));
+  
   --text-color: white;
 }
 
 body {
   margin: 0;
   
+  background: var(--background-color);
   background: url(https://cdn.osxdaily.com/wp-content/uploads/2020/10/macos-big-sur-wallpaper-1-scaled.jpg);
   background-size: cover;
   
@@ -98,7 +103,7 @@ body {
 }
 
 input[type="radio"]:checked+.btn {
-  background-color: rgb(43 104 255);
+  background-color: var(--label-primary);
 }
 
 .list-options {
@@ -118,4 +123,4 @@ input[type="radio"]:checked+.btn {
 
 .header {
   padding: 0.75rem;
-}s
+}
