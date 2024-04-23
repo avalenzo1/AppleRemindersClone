@@ -20,6 +20,11 @@ body {
   color: var(--text-color);
 }
 
+hr {
+    border: none;
+    border-bottom: solid 1px rgb(54, 54, 54);
+}
+
 .sf-symbol {
   pointer-events: none;
 }
@@ -269,6 +274,7 @@ dialog {
     overlay 0.3s ease-out allow-discrete,
     display 0.3s ease-out allow-discrete;
   background-color: rgb(30,30,30);
+  color: var(--text-color);
   border: solid 1px rgb(70,70,70);
   box-shadow: 0 0 0 1px rgb(0,0,0), 0 10px 22px 12px rgb(0,0,0,0.5);
 }
