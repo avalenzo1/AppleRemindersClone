@@ -1,0 +1,12 @@
+{
+  "name": "Reminders",
+  "icons": [
+    {
+      "src": "https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/Reminders_(macOS).png?v=1713904563606",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone"
+}
