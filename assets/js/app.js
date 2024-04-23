@@ -49,18 +49,23 @@ Reminders.Lists.remove = (name) => {};
 Reminders.UI = {};
 
 Reminders.UI.displayLists = () => {
-  let ul = document.getElementById("list-options");
+  const ul = document.getElementById("list-options");
   
   Reminders.Lists.all().forEach(name => {
-    let html = `
+    const li = `
     <li>
       <input type="radio" id="filter-by-${name}" name="filter" value="${name}" hidden>
       <label class="btn" for="filter-by-${name}">${name}</label>
     </li>
     `;
     
-    ul.insertAdjacentHTML('beforeend', html)
+    ul.insertAdjacentHTML('beforeend', li);
   });
+};
+
+Reminders.UI.createEvents = () => {
+  // Select all radio inputs with the name 'color'
+  const radios = document.querySelectorAll('input[name="filter"]');
 };
 
 Reminders.init = () => {
@@ -68,9 +73,8 @@ Reminders.init = () => {
     Reminders.Lists.create("Reminders");
   }
   
+  Reminders.UI.createEvents();
   Reminders.UI.displayLists();
-  
-  Reminders.UI
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.init);
