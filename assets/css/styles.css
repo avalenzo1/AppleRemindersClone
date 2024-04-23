@@ -87,8 +87,8 @@ body {
   width: 100%;
 }
 
-.filter-options .btn:checked {
-  background-color: blue;
+.filter-options input[type="radio"]:checked+.btn {
+  background-color: rgb(43 104 255);
 }
 
 .list-options {

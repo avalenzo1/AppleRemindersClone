@@ -18,30 +18,28 @@
 
         <ul class="filter-options">
           <li>
-            <input type="radio" id="filter-by-today" name="filter" value="Today" checked>
+            <input type="radio" id="filter-by-today" name="filter" value="Today" hidden checked>
             <label class="btn" for="filter-by-today">Today</label>
           </li>
 
           <li>
-            <input type="radio" id="filter-by-scheduled" name="filter" value="Scheduled">
+            <input type="radio" id="filter-by-scheduled" name="filter" value="Scheduled" hidden>
             <label class="btn" for="filter-by-scheduled">Scheduled</label>
           </li>
           <li>
-            <input type="radio" id="filter-by-all" name="filter" value="All">
+            <input type="radio" id="filter-by-all" name="filter" value="All" hidden>
             <label class="btn" for="filter-by-all">All</label>
           </li>
           <li>
-            <input type="radio" id="filter-by-completed" name="filter" value="Completed">
+            <input type="radio" id="filter-by-completed" name="filter" value="Completed" hidden>
             <label class="btn" for="filter-by-completed">Completed</label>
           </li>
         </ul>
 
         <div style="flex: 1;">
           <span>My Lists</span>
-          <ul class="list-options">
-            <li>
-              <button class="btn">Reminders</button>
-            </li>
+          <ul class="list-options" id="list-options">
+            
           </ul>
         </div>
         
@@ -55,7 +53,7 @@
           </div>
           
           <h1>
-            Today
+            
           </h1>
         </nav>
         
