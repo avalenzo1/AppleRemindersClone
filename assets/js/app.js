@@ -63,23 +63,16 @@ Reminders.UserInterface.displayLists = () => {
   });
 };
 
-Reminders.UserInterface.
-
 Reminders.UserInterface.initialize = () => {
   Reminders.UserInterface.displayLists();
 };
 
 Reminders.Events = {};
 
+Reminders.Events.
+
 Reminders.Events.initialize = () => {
-  const radios = document.querySelectorAll('input[name="filter"]');
   
-  for (let i = 0; i < radios.length; i++)
-  {
-    let radio = radios[i];
-    
-    radio.addEventListener("click", Reminders.UserInterface.);
-  }
 };
 
 Reminders.initialize = () => {
