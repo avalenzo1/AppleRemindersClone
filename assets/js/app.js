@@ -46,10 +46,21 @@ Reminders.Lists.create = (name) => {
 
 Reminders.Lists.remove = (name) => {};
 
-Reminders.UIUpdater = {};
+Reminders.UI = {};
 
-Reminders.UIUpdater.displayLists = () => {
+Reminders.UI.displayLists = () => {
+  let ul = document.getElementById("list-options");
   
+  Reminders.Lists.all().forEach(name => {
+    let html = `
+    <li>
+      <input type="radio" id="filter-by-${name}" name="filter" value="${name}" hidden>
+      <label class="btn" for="filter-by-${name}">${name}</label>
+    </li>
+    `;
+    
+    ul.insertAdjacentHTML('beforeend', html)
+  });
 };
 
 Reminders.init = () => {
@@ -57,7 +68,9 @@ Reminders.init = () => {
     Reminders.Lists.create("Reminders");
   }
   
-  Reminders.HtmlHandler.displayLists();
+  Reminders.UI.displayLists();
+  
+  Reminders.UI
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.init);
