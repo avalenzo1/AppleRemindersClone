@@ -69,7 +69,6 @@ Reminders.UserInterface.initialize = () => {
 
 Reminders.Events = {};
 
-Reminders.Events.
 
 Reminders.Events.initialize = () => {
   
