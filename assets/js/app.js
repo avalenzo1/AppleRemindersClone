@@ -3,45 +3,61 @@ console.log(
   "font-family: 'SF Pro Display', sans-serif; font-size: large; background-color: black; color: white; border-radius: 0.5rem; padding: 5px;"
 );
 
-var reminders = reminders || {};
-
-function uuidv4() {
+function UUID() {
   return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
     (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
   );
 }
 
-reminders.lists = {};
+var Reminders = Reminders || {};
+
+Reminders.Lists = {};
 
 /**
  * Returns all list names
  */
-reminders.lists.all = () => {
+Reminders.Lists.all = () => {
+  let keys = [];
+  
+  // Checks if key is a list
   for (let i = 0; i < localStorage.length; i++) {
-    console.log(localStorage.key(i));
+    let key = localStorage.key(i);
+    
+    // Appends to keys list
+    if (key.includes("list--")) {
+      keys.push(key.slice(6,key.length));
+    }
   }
+  
+  return keys;
 };
 
-reminders.lists.exists = (name) => {
+Reminders.Lists.exists = (name) => {
   return localStorage.getItem(`list-${name}`) !== null;
 };
 
-reminders.lists.get = (name) => {};
+Reminders.Lists.get = (name) => {};
 
-reminders.lists.create = (name) => {
-  if (!reminders.lists.exists(name)) {
-    localStorage.setItem(`list-${name}`, "{}");
+Reminders.Lists.create = (name) => {
+  if (!Reminders.Lists.exists(name)) {
+    localStorage.setItem(`list--${name}`, "{}");
   }
 };
 
-reminders.lists.remove = (name) => {};
+Reminders.Lists.remove = (name) => {};
 
-reminders.init = () => {
+Reminders.UIUpdater = {};
+
+Reminders.UIUpdater.displayLists = () => {
+  
+};
+
+Reminders.init = () => {
   if (localStorage.length == 0) {
-    reminders.lists.create("Reminders");
+    Reminders.Lists.create("Reminders");
   }
   
-  reminders.lists.all();
+  Reminders.HtmlHandler.displayLists();
 };
 
-document.addEventListener("DOMContentLoaded", reminders.init);
+document.addEventListener("DOMContentLoaded", Reminders.init);
