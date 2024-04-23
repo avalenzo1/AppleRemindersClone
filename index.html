@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reminders</title>
 
     <link
@@ -111,16 +111,24 @@
         </ul>
 
         <div style="flex: 1">
-          <span>My Lists</span>
+          <span style="font-size: small; color: gray">My Lists</span>
           <ul class="list-options" id="list-options"></ul>
         </div>
 
-        <button class="btn" id="open-new-list-dialog" style="width: fit-content;
-    background-color: transparent;
-    color: gray;
-    padding: 0;
-    flex-direction: row;
-    gap: 0.5rem;">
+        <button
+          class="btn"
+          id="open-new-list-dialog"
+          style="
+            width: fit-content;
+            background-color: transparent;
+            color: gray;
+            padding: 0;
+            flex-direction: row;
+            gap: 0.5rem;
+            border: none;
+            box-shadow: none;
+          "
+        >
           <object
             type="image/svg+xml"
             data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/d56b63ee-7f52-4d9a-b45b-f8944b277784.plus.circle.svg?v=1713910627016"
@@ -148,16 +156,20 @@
         </nav>
       </main>
     </div>
-    
+
     <dialog id="new-list-dialog">
-      <form id="new-list-form" method="dialog">        
-        <button class="btn" id="close-new-list-dialog">
-          Close
-        </button>
+      <form id="new-list-form" method="dialog">
         
-        <button class="btn">
-          OK
-        </button>
+        
+        
+        <hr>
+        
+        <nav style="    display: flex;
+    justify-content: flex-end; gap: 0.5rem;">
+          <button class="btn" id="close-new-list-dialog">Cancel</button>
+
+          <button class="btn">OK</button>
+        </nav>
       </form>
     </dialog>
   </body>
