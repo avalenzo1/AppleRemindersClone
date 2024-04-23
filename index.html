@@ -115,7 +115,7 @@
           <ul class="list-options" id="list-options"></ul>
         </div>
 
-        <button class="btn" style="width: fit-content;
+        <button class="btn" id="open-new-list-dialog" style="width: fit-content;
     background-color: transparent;
     color: gray;
     padding: 0;
@@ -149,38 +149,11 @@
       </main>
     </div>
     
-    <dialog id="todo-dialog">
-      <nav
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding-bottom: 0.5rem;
-          border-bottom: solid 1px #b2b2b2;
-        "
-      >
-        <span
-          style="font-size: larger; font-weight: bold; color: rgb(100 95 83)"
-          >Settings</span
-        >
-        <button class="btn" id="close-dialog">✕ Cancel</button>
-      </nav>
-
-      <form id="settings-form" method="dialog">        
-        <div class="form-group">
-          <label for="auto-delete">Autodelete Closed Todos:</label>
-          <select name="auto-delete" id="auto-delete" disabled>
-            <option value="never">Never</option>
-            <option value="one_day">After 1 Day</option>
-            <option value="three_days">After 3 Days</option>
-            <option value="one_week">After 1 Week</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="auto-delete">Enable notifications:</label>
-          <input type="checkbox" disabled>
-        </div>
+    <dialog id="new-list-dialog">
+      <form id="new-list-form" method="dialog">        
+        <button id="close-new-list-dialog">
+          Close
+        </button>
       </form>
     </dialog>
   </body>

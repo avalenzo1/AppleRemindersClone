@@ -71,7 +71,19 @@ Reminders.Events = {};
 
 
 Reminders.Events.initialize = () => {
+  let dialog = document.getElementById("new-list-dialog");
   
+  let showButton = document.getElementById("open-new-list-dialog");
+  let closeButton = document.getElementById("close-new-list-dialog");
+  
+  closeButton.onclick = () => {
+    dialog.close();
+  };
+  
+  showButton.onclick = () => {
+    dialog.showModal();
+    
+  };
 };
 
 Reminders.initialize = () => {
@@ -84,4 +96,4 @@ Reminders.initialize = () => {
   
 };
 
-document.addEventListener("DOMContentLoaded", Reminders.init);
+document.addEventListener("DOMContentLoaded", Reminders.initialize);
