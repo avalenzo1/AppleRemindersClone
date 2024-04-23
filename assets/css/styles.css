@@ -15,11 +15,8 @@
 
 body {
   margin: 0;
-  
-  background: var(--background-color);
-  background: url(https://cdn.osxdaily.com/wp-content/uploads/2020/10/macos-big-sur-wallpaper-1-scaled.jpg);
+  background: var(--background-color) url(https://cdn.osxdaily.com/wp-content/uploads/2020/10/macos-big-sur-wallpaper-1-scaled.jpg);
   background-size: cover;
-  
   color: var(--text-color);
 }
 
