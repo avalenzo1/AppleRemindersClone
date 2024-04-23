@@ -66,6 +66,15 @@ Reminders.UI.displayLists = () => {
 Reminders.UI.createEvents = () => {
   // Select all radio inputs with the name 'color'
   const radios = document.querySelectorAll('input[name="filter"]');
+  
+  for (let i = 0; i < radios.length; i++)
+  {
+    let radio = radios[i];
+    
+    radio.checked = true;
+    
+    console.log(radio)
+  }
 };
 
 Reminders.init = () => {
