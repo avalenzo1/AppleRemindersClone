@@ -2,11 +2,11 @@
   "name": "Reminders",
   "icons": [
     {
-      "src": "https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/Reminders_(macOS).png?v=1713904563606",
+      "src": "https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/256x256%402x.png?v=1713905016854",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": "./index.html",
-  "display": "standalone"
+  "display": "fullscreen"
 }
