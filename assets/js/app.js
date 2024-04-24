@@ -36,7 +36,13 @@ Reminders.Lists.exists = (name) => {
   return localStorage.getItem(`list-${name}`) !== null;
 };
 
-Reminders.Lists.get = (name) => {};
+Reminders.Lists.get = (name) => {
+  if (!Reminders.Lists.exists(name)) {
+    throw new Error(`List '${name}' does not exist.`);
+  }
+  
+  return JSON.parse(localStorage.getItem(`list--${name}`));
+};
 
 Reminders.Lists.create = (name) => {
   if (!Reminders.Lists.exists(name)) {
@@ -102,9 +108,11 @@ Reminders.Events.CreateDialogEventListener = () => {
 Reminders.Events.CreateCategoryEventListener = (e) => {
   console.log(e);
   
-  let title = document.getElementById("category-header-title");
+  let span = document.getElementById("category-header-title");
   
-  title.innerHTML = e.target.value;
+  span.innerHTML = e.target.value;
+  
+  console.log(Reminders.Lists.get(e.target.value));
 };
 
 Reminders.Events.CreateCategoriesEventListener = () => {
@@ -133,4 +141,3 @@ Reminders.Initialize = () => {
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.Initialize);
-
