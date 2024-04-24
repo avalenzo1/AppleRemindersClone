@@ -129,12 +129,14 @@ Reminders.Events.CreateDialogEventListener = () => {
 };
 
 Reminders.Events.CreateCategoryEventListener = (e) => {
-  let span = document.getElementById("category-header-title");
+  let title = document.getElementById("category-header-title");
+  let counter = document.getElementById("category-header-counter");
   
   try {
     let list = Reminders.Lists.get(e.target.value);
     
-    span.innerHTML = e.target.value;
+    title.innerHTML = list.title;
+    counter.innerHTML = list.tasks.length;
   }
   catch (e)
   {
