@@ -41,6 +41,12 @@ Reminders.Lists.get = (name) => {
     throw new Error(`List '${name}' does not exist.`);
   }
   
+  if(JSON.parse(localStorage.getItem(`list--${name}`)) == {})
+  {
+    let reset = prompt("Storage is corrupted. Clear storage?");
+    
+  }
+  
   return JSON.parse(localStorage.getItem(`list--${name}`));
 };
 
@@ -132,11 +138,28 @@ Reminders.Events.CreateCategoryEventListener = (e) => {
   let title = document.getElementById("category-header-title");
   let counter = document.getElementById("category-header-size");
   
+  let ul = document.getElementById("list-container");
+  
   try {
     let list = Reminders.Lists.get(e.target.value);
     
     title.innerHTML = list.title;
     counter.innerHTML = list.tasks.length;
+    
+    ul.innerHTML = "";
+    
+    for (let i = 0; i < list.tasks.length; i++)
+    {
+      const li = `
+        <li>
+          ${list.tasks[i].content}
+        </li>
+      `;
+      
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+    
+    
   }
   catch (e)
   {
