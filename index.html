@@ -139,7 +139,10 @@
       </nav>
 
       <main class="main">
-        <nav class="header">
+        <nav
+          class="header"
+          style="display: flex; flex-direction: column; gap: 2rem"
+        >
           <div style="display: flex; justify-content: flex-end">
             <button class="btn">
               <object
@@ -150,33 +153,33 @@
             </button>
           </div>
 
-          <h1>
+          <div style="display: flex; justify-content: space-between">
             <span id="category-header-title"></span>
-          </h1>
+
+            <span id="category-header-count">0</span>
+          </div>
         </nav>
       </main>
     </div>
 
     <dialog id="new-list-dialog">
       <form id="new-list-form" method="dialog">
-        <span>New List</span><br>
-        
+        <span>New List</span><br />
+
         <div>
           <label>Name: </label>
-          <input class="form-control form-control--small">
+          <input class="form-control form-control--small" />
         </div>
-        
+
         <div>
           <label>Color: </label>
-          <input type="radio">
+          <input type="radio" />
         </div>
-        
-        <hr>
-        
-        <nav style="    display: flex;
-    justify-content: flex-end; gap: 0.5rem;">
-          <button class="btn" id="close-new-list-dialog">Cancel</button>
 
+        <hr />
+
+        <nav style="display: flex; justify-content: flex-end; gap: 0.5rem">
+          <button class="btn" id="close-new-list-dialog">Cancel</button>
           <button class="btn" disabled>OK</button>
         </nav>
       </form>

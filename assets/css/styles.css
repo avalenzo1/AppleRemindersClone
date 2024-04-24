@@ -274,6 +274,25 @@ input[type="radio"]:checked+.btn {
 
 .header {
   padding: 0.75rem;
+<
+  nav class="header" style="
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+">
+          <div style="display: flex; justify-content: flex-end">
+            <button class="btn">
+              <object type="image/svg+xml" data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/plus.svg?v=1713910740949" class="sf-symbol"></object>
+            </button>
+          </div>
+
+          <div style="display: flex;justify-content: space-between;">
+            <span id="category-header-title">Reminders</span>
+            
+            <span id="category-header-count">0</span>
+          </div>
+        </nav>;
+  display: flex;
 }
 
 /*   Closed state of the dialog   */
@@ -293,6 +312,7 @@ dialog {
   color: var(--text-color);
   border: solid 1px rgb(70,70,70);
   box-shadow: 0 0 0 1px rgb(0,0,0), 0 10px 22px 12px rgb(0,0,0,0.5);
+  transform: translate(0, -100%);
 }
 
 /*   Open state of the dialog  */

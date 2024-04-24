@@ -48,8 +48,8 @@ Reminders.Lists.create = (name) => {
   if (!Reminders.Lists.exists(name)) {
     localStorage.setItem(`list--${name}`, `
     {
-      "UUID": ${UUID()},
-      "title": ${name}
+      "UUID": "${UUID()}",
+      "title": "${name}",
       "tasks": [
         {
           "id": 101,
@@ -79,10 +79,12 @@ Reminders.UserInterface.updateListInformation = () => {
   const ul = document.getElementById("list-options");
   
   Reminders.Lists.all().forEach(name => {
+    const list = Reminders.Lists.get(name);
+    
     const li = `
     <li>
-      <input type="radio" id="category--${name}" name="category" value="${name}" hidden>
-      <label class="btn" for="category--${name}">
+      <input type="radio" id="category--${list.title}" name="category" value="${name}" hidden>
+      <label class="btn" for="category--${list.title}">
         <div style="
     display: flex;
     align-items: center;
@@ -93,10 +95,10 @@ Reminders.UserInterface.updateListInformation = () => {
             data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/list.bullet.circle.fill.svg?v=1713913715875"
             class="sf-symbol"
           ></object>
-          <span>${name}</span>
+          <span>${list.title}</span>
         </div>
         
-        <span>0</span>
+        <span>${list.tasks.length}</span>
       </label>
     </li>
     `;
