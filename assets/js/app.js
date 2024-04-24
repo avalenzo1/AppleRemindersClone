@@ -45,6 +45,15 @@ Reminders.Lists.get = (name) => {
 };
 
 Reminders.Lists.create = (name) => {
+  let modifiedName = name;
+  let i = 1;
+  
+  while (Reminders.List.exists(modifiedName))
+  {
+    modifiedName = `${name} ${i}`;
+    
+  }
+  
   if (!Reminders.Lists.exists(name)) {
     localStorage.setItem(`list--${name}`, `
     {
@@ -136,10 +145,18 @@ Reminders.Events.CreateDialogEventListener = () => {
   form.oninput = () => {
     console.log("Change detected")
     
-    if (listNameInput !== "")
+    if (listNameInput.value === '')
     {
-      
+      listSubmitButton.disabled = true;
     }
+    else
+    {
+      listSubmitButton.disabled = false;
+    }
+  };
+  
+  form.onsubmit = (e) => {
+    Reminders.Lists.create(listNameInput.value);
   };
 };
 
