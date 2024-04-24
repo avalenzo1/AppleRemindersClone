@@ -4,8 +4,11 @@ console.log(
 );
 
 function UUID() {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
+    (
+      +c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
+    ).toString(16)
   );
 }
 
@@ -18,17 +21,17 @@ Reminders.Lists = {};
  */
 Reminders.Lists.all = () => {
   let keys = [];
-  
+
   // Checks if key is a list
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
-    
+
     // Appends to keys list
     if (key.includes("list--")) {
-      keys.push(key.slice(6,key.length));
+      keys.push(key.slice(6, key.length));
     }
   }
-  
+
   return keys;
 };
 
@@ -40,25 +43,26 @@ Reminders.Lists.get = (name) => {
   if (!Reminders.Lists.exists(name)) {
     throw new Error(`List '${name}' does not exist.`);
   }
-  
+
   return JSON.parse(localStorage.getItem(`list--${name}`));
 };
 
-Reminders.Lists.create = (name) => {
+Reminders.Lists.create = (name, color = "blue") => {
   let modifiedName = name;
-  let i = 1;
-  
-  while (Reminders.List.exists(modifiedName))
-  {
+  let i = 0;
+
+  while (Reminders.Lists.exists(modifiedName)) {
+    i++;
     modifiedName = `${name} ${i}`;
-    
   }
-  
-  if (!Reminders.Lists.exists(name)) {
-    localStorage.setItem(`list--${name}`, `
+
+  localStorage.setItem(
+    `list--${modifiedName}`,
+    `
     {
       "UUID": "${UUID()}",
-      "title": "${name}",
+      "title": "${modifiedName}",
+      "color": "${color}",
       "tasks": [
         {
           "id": 101,
@@ -76,8 +80,13 @@ Reminders.Lists.create = (name) => {
         }
       ]
     }
-    `);
-  }
+    `
+  );
+  
+  Reminders.UserInterface.updateListInformation();
+  
+  Reminders.Events.ClearCategoriesEventListener();
+  Reminders.Events.CreateCategoriesEventListener();
 };
 
 Reminders.Lists.remove = (name) => {};
@@ -87,9 +96,11 @@ Reminders.UserInterface = {};
 Reminders.UserInterface.updateListInformation = () => {
   const ul = document.getElementById("list-options");
   
-  Reminders.Lists.all().forEach(name => {
+  ul.innerHTML = "";
+
+  Reminders.Lists.all().forEach((name) => {
     const list = Reminders.Lists.get(name);
-    
+
     const li = `
     <li>
       <input type="radio" id="category--${list.title}" name="category" value="${name}" hidden>
@@ -111,8 +122,8 @@ Reminders.UserInterface.updateListInformation = () => {
       </label>
     </li>
     `;
-    
-    ul.insertAdjacentHTML('beforeend', li);
+
+    ul.insertAdjacentHTML("beforeend", li);
   });
 };
 
@@ -126,80 +137,85 @@ Reminders.Events.CreateDialogEventListener = () => {
   let dialog = document.getElementById("new-list-dialog");
   let showButton = document.getElementById("open-new-list-dialog");
   let closeButton = document.getElementById("close-new-list-dialog");
-  
+
   let form = document.getElementById("new-list-form");
-  
+
   let listNameInput = document.getElementById("new-list-name-field");
   let listColorInput;
-  
-  let listSubmitButton  = document.getElementById("submit-new-list");
-  
+
+  let listSubmitButton = document.getElementById("submit-new-list");
+
   closeButton.onclick = () => {
     dialog.close();
   };
-  
+
   showButton.onclick = () => {
     dialog.showModal();
   };
-  
+
   form.oninput = () => {
-    console.log("Change detected")
-    
-    if (listNameInput.value === '')
-    {
+    console.log("Change detected");
+
+    if (listNameInput.value === "") {
       listSubmitButton.disabled = true;
-    }
-    else
-    {
+    } else {
       listSubmitButton.disabled = false;
     }
   };
-  
+
   form.onsubmit = (e) => {
     Reminders.Lists.create(listNameInput.value);
   };
 };
 
-Reminders.Events.CreateCategoryEventListener = (e) => {
+Reminders.Events.OnCategoryClick = (e) => {
   let title = document.getElementById("category-header-title");
   let counter = document.getElementById("category-header-size");
-  
+
   let ul = document.getElementById("list-container");
-  
+
   try {
     let list = Reminders.Lists.get(e.target.value);
-    
+
     title.innerHTML = list.title;
     counter.innerHTML = list.tasks.length;
-    
+
     ul.innerHTML = "";
-    
-    for (let i = 0; i < list.tasks.length; i++)
-    {
+
+    for (let i = 0; i < list.tasks.length; i++) {
       const li = `
         <li>
           ${list.tasks[i].content}
         </li>
       `;
-      
-      ul.insertAdjacentHTML('beforeend', li);
+
+      ul.insertAdjacentHTML("beforeend", li);
     }
-    
-    
-  }
-  catch (e)
-  {
+  } catch (e) {
     alert(e.message);
   }
 };
 
 Reminders.Events.CreateCategoriesEventListener = () => {
   const radios = document.querySelectorAll("input[name='category']");
-  
-  radios.forEach(radio => {
+
+  radios.forEach((radio) => {
     console.log(radio);
-    
-    radio.addEventListener("click", Reminders.Events.CreateCategoryEventListener);
+
+    radio.addEventListener(
+      "click",
+      Reminders.Events.OnCategoryClick
+    );
+  });
+};
+
+Reminders.Events.ClearCategoriesEventListener = () => {
+  const radios = document.querySelectorAll("input[name='category']");
+
+  radios.forEach((radio) => {
+    console.log(radio);
+
+    radio.removeEventListener("click", Reminders.Events.OnCategoryClick);
   });
 };
 
@@ -212,10 +228,9 @@ Reminders.Initialize = () => {
   if (localStorage.length == 0) {
     Reminders.Lists.create("Reminders");
   }
-  
+
   Reminders.UserInterface.Initialize();
   Reminders.Events.Initialize();
-  
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.Initialize);
