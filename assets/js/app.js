@@ -33,7 +33,7 @@ Reminders.Lists.all = () => {
 };
 
 Reminders.Lists.exists = (name) => {
-  return localStorage.getItem(`list-${name}`) !== null;
+  return localStorage.getItem(`list--${name}`) !== null;
 };
 
 Reminders.Lists.get = (name) => {
@@ -46,7 +46,28 @@ Reminders.Lists.get = (name) => {
 
 Reminders.Lists.create = (name) => {
   if (!Reminders.Lists.exists(name)) {
-    localStorage.setItem(`list--${name}`, "{}");
+    localStorage.setItem(`list--${name}`, `
+    {
+      "UUID": ${UUID()},
+      "title": ${name}
+      "tasks": [
+        {
+          "id": 101,
+          "content": "Buy milk",
+          "due_date": "2024-04-30T10:00:00Z",
+          "completed": false,
+          "priority": "high"
+        },
+        {
+          "id": 102,
+          "content": "Buy eggs",
+          "due_date": null,
+          "completed": false,
+          "priority": "medium"
+        }
+      ]
+    }
+    `);
   }
 };
 
@@ -106,13 +127,17 @@ Reminders.Events.CreateDialogEventListener = () => {
 };
 
 Reminders.Events.CreateCategoryEventListener = (e) => {
-  console.log(e);
-  
   let span = document.getElementById("category-header-title");
   
-  span.innerHTML = e.target.value;
-  
-  console.log(Reminders.Lists.get(e.target.value));
+  try {
+    let list = Reminders.Lists.get(e.target.value);
+    
+    span.innerHTML = e.target.value;
+  }
+  catch (e)
+  {
+    alert(e.message);
+  }
 };
 
 Reminders.Events.CreateCategoriesEventListener = () => {
