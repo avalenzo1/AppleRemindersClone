@@ -48,7 +48,7 @@ Reminders.Lists.remove = (name) => {};
 
 Reminders.UserInterface = {};
 
-Reminders.UserInterface.displayLists = () => {
+Reminders.UserInterface.updateListInformation = () => {
   const ul = document.getElementById("list-options");
   
   Reminders.Lists.all().forEach(name => {
@@ -79,7 +79,7 @@ Reminders.UserInterface.displayLists = () => {
 };
 
 Reminders.UserInterface.initialize = () => {
-  Reminders.UserInterface.displayLists();
+  Reminders.UserInterface.updateListInformation();
 };
 
 Reminders.Events = {};
@@ -97,7 +97,6 @@ Reminders.Events.initialize = () => {
   
   showButton.onclick = () => {
     dialog.showModal();
-    
   };
 };
 
