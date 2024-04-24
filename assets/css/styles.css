@@ -4,11 +4,32 @@
 }
 
 :root {
-  --background-color-rgb: 31, 31, 31;
+  --background-color-rgb: 37, 37, 37;
   --background-color: rgb(var(--background-color-rgb));
 
-  --label-primary-rgb: 59, 130, 247;
-  --label-primary: rgb(var(--label-primary-rgb));
+  --rm-red-rgb: 236, 85, 70;
+  --rm-red: rgb(var(--rm-red-rgb));
+  
+  --rm-orange-rgb: 242, 163, 60;
+  --rm-orange: rgb(var(--rm-orange-rgb));
+  
+  --rm-yellow-rgb: 249, 215, 74;
+  --rm-yellow: rgb(var(--rm-yellow-rgb));
+  
+  --rm-green-rgb: 104, 206, 106;
+  --rm-green: rgb(var(--rm-green-rgb));
+  
+  --rm-blue-rgb: 59, 130, 247;
+  --rm-blue: rgb(var(--rm-blue-rgb));
+  
+  --rm-purple-rgb: 202, 131, 239;
+  --rm-purple: rgb(var(--rm-purple-rgb));
+  
+  --rm-brown-rgb: 196, 167, 124;
+  --rm-brown: rgb(var(--rm-brown-rgb));
+
+  --rm-primary-rgb: var(--rm-blue-rgb);
+  --rm-primary: rgb(var(--rm-primary-rgb));
 
   --text-color-rgb: 255, 255, 255;
   --text-color: rgb(var(--text-color-rgb));
@@ -29,8 +50,8 @@ hr {
 }
 
 .form-check-input {
-  --label-color: var(--label-primary);
-  
+  --label-color: var(--rm-primary);
+
   appearance: none;
   display: inline-block;
   background-color: var(--label-color);
@@ -134,7 +155,7 @@ hr {
 }
 
 input[type="radio"]:checked + .btn {
-  background-color: var(--label-primary);
+  background-color: var(--rm-primary);
 }
 
 .list-options {
@@ -250,7 +271,7 @@ input[type="radio"]:checked + .btn {
 }
 
 input[type="radio"]:checked + .btn {
-  background-color: var(--label-primary);
+  background-color: var(--rm-primary);
 }
 
 .list-options {
