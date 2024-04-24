@@ -115,11 +115,15 @@ Reminders.Events = {};
 
 Reminders.Events.CreateDialogEventListener = () => {
   let dialog = document.getElementById("new-list-dialog");
-  
   let showButton = document.getElementById("open-new-list-dialog");
   let closeButton = document.getElementById("close-new-list-dialog");
   
+  let form = document.getElementById("new-list-form");
   
+  let listNameInput = document.getElementById("new-list-name-field");
+  let listColorInput;
+  
+  let listSubmitButton  = document.getElementById("submit-new-list");
   
   closeButton.onclick = () => {
     dialog.close();
@@ -129,7 +133,14 @@ Reminders.Events.CreateDialogEventListener = () => {
     dialog.showModal();
   };
   
-  
+  form.oninput = () => {
+    console.log("Change detected")
+    
+    if (listNameInput !== "")
+    {
+      
+    }
+  };
 };
 
 Reminders.Events.CreateCategoryEventListener = (e) => {

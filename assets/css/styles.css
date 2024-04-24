@@ -29,12 +29,14 @@ hr {
 }
 
 .form-check-input {
+  --label-color: var(--label-primary);
+  
   appearance: none;
   display: inline-block;
-  background-color: var(--label-primary);
+  background-color: var(--label-color);
   border-radius: 5rem;
   padding: 3px;
-  border: solid 5px var(--label-primary);
+  border: solid 5px var(--label-color);
   margin: 0;
 }
 
@@ -208,7 +210,7 @@ input[type="radio"]:checked + .btn {
   border: solid 1px rgb(51, 51, 51);
   border-bottom: solid 1px rgb(255, 255, 255, 0.25);
   border-top: solid 1px rgb(255, 255, 255, 0.1);
-  padding: 0;
+  padding: 1px;
 }
 
 .wrapper {
