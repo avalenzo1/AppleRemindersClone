@@ -78,14 +78,13 @@ Reminders.UserInterface.updateListInformation = () => {
   });
 };
 
-Reminders.UserInterface.initialize = () => {
+Reminders.UserInterface.Initialize = () => {
   Reminders.UserInterface.updateListInformation();
 };
 
 Reminders.Events = {};
 
-
-Reminders.Events.initialize = () => {
+Reminders.Events.CreateDialogEventListener = () => {
   let dialog = document.getElementById("new-list-dialog");
   
   let showButton = document.getElementById("open-new-list-dialog");
@@ -100,14 +99,23 @@ Reminders.Events.initialize = () => {
   };
 };
 
-Reminders.initialize = () => {
+Reminders.Events.CreateCategoryEventListener = () => {
+  const categoryRadios = document.querySelectorAll("input[name='category_filter']");
+};
+
+Reminders.Events.Initialize = () => {
+  Reminders.Events.CreateDialogEventListener();
+  Reminders.Events.CreateCategoryEventListener();
+};
+
+Reminders.Initialize = () => {
   if (localStorage.length == 0) {
     Reminders.Lists.create("Reminders");
   }
   
-  Reminders.UserInterface.initialize();
-  Reminders.Events.initialize();
+  Reminders.UserInterface.Initialize();
+  Reminders.Events.Initialize();
   
 };
 
-document.addEventListener("DOMContentLoaded", Reminders.initialize);
+document.addEventListener("DOMContentLoaded", Reminders.Initialize);
