@@ -119,6 +119,8 @@ Reminders.Events.CreateDialogEventListener = () => {
   let showButton = document.getElementById("open-new-list-dialog");
   let closeButton = document.getElementById("close-new-list-dialog");
   
+  
+  
   closeButton.onclick = () => {
     dialog.close();
   };
@@ -126,6 +128,8 @@ Reminders.Events.CreateDialogEventListener = () => {
   showButton.onclick = () => {
     dialog.showModal();
   };
+  
+  
 };
 
 Reminders.Events.CreateCategoryEventListener = (e) => {
