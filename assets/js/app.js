@@ -144,6 +144,10 @@ Reminders.Events.CreateDialogEventListener = () => {
   let listColorInput;
 
   let listSubmitButton = document.getElementById("submit-new-list");
+  
+  dialog.addEventListener("close", (event) => {
+    listNameInput.value = '';
+  });
 
   closeButton.onclick = () => {
     dialog.close();
