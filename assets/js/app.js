@@ -54,8 +54,8 @@ Reminders.UserInterface.updateListInformation = () => {
   Reminders.Lists.all().forEach(name => {
     const li = `
     <li>
-      <input type="radio" id="filter-by-${name}" name="filter" value="${name}" hidden>
-      <label class="btn" for="filter-by-${name}">
+      <input type="radio" id="category--${name}" name="category" value="${name}" hidden>
+      <label class="btn" for="category--${name}">
         <div style="
     display: flex;
     align-items: center;
@@ -99,13 +99,27 @@ Reminders.Events.CreateDialogEventListener = () => {
   };
 };
 
-Reminders.Events.CreateCategoryEventListener = () => {
-  const categoryRadios = document.querySelectorAll("input[name='category_filter']");
+Reminders.Events.CreateCategoryEventListener = (e) => {
+  console.log(e);
+  
+  let title = document.getElementById("category-header-title");
+  
+  title.innerHTML = e.target.value;
+};
+
+Reminders.Events.CreateCategoriesEventListener = () => {
+  const radios = document.querySelectorAll("input[name='category']");
+  
+  radios.forEach(radio => {
+    console.log(radio);
+    
+    radio.addEventListener("click", Reminders.Events.CreateCategoryEventListener);
+  });
 };
 
 Reminders.Events.Initialize = () => {
   Reminders.Events.CreateDialogEventListener();
-  Reminders.Events.CreateCategoryEventListener();
+  Reminders.Events.CreateCategoriesEventListener();
 };
 
 Reminders.Initialize = () => {
@@ -119,3 +133,4 @@ Reminders.Initialize = () => {
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.Initialize);
+
