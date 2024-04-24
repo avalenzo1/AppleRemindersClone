@@ -185,6 +185,7 @@ Reminders.Events.OnCategoryClick = (e) => {
     for (let i = 0; i < list.tasks.length; i++) {
       const li = `
         <li class="checklist-item">
+          <input class="form-check-input" type="checkbox"/>
           ${list.tasks[i].content}
         </li>
       `;

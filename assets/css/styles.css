@@ -49,7 +49,7 @@ hr {
   border-bottom: solid 1px rgb(54, 54, 54);
 }
 
-.form-check-input {
+.form-radio-input {
   --label-color: var(--rm-primary);
 
   appearance: none;
@@ -61,8 +61,24 @@ hr {
   margin: 0;
 }
 
-.form-check-input:checked {
+.form-radio-input:checked {
   background-color: white;
+}
+
+.form-check-input {
+  --label-color: var(--rm-primary);
+  
+  border-radius: 1rem;
+  appearance: none;
+  padding: 0.4rem;
+  border: solid 1px;
+  color: var(--background-color);
+  box-shadow: 0 0 0 1px var(--rm-blue);
+  background-color: var(--rm-blue);
+}
+
+.form-radio-input:checked {
+
 }
 
 .sf-symbol {
