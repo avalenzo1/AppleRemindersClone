@@ -263,7 +263,7 @@ dialog {
   display: none;
   flex-direction: column;
   gap: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   border: none;
   width: 500px;
   opacity: 0;

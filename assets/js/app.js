@@ -41,12 +41,6 @@ Reminders.Lists.get = (name) => {
     throw new Error(`List '${name}' does not exist.`);
   }
   
-  if(JSON.parse(localStorage.getItem(`list--${name}`)) == {})
-  {
-    let reset = prompt("Storage is corrupted. Clear storage?");
-    
-  }
-  
   return JSON.parse(localStorage.getItem(`list--${name}`));
 };
 
