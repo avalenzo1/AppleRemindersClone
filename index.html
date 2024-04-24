@@ -174,19 +174,20 @@
     </div>
 
     <dialog id="new-list-dialog">
-      <form id="new-list-form" method="dialog" style="    display: flex;
-    flex: 0.5rem;
-    flex-direction: column;
-    gap: 0.5rem;">
-        <span>New List</span>
+      <form
+        id="new-list-form"
+        method="dialog"
+        style="display: flex; flex: 0.5rem; flex-direction: column; gap: 0.5rem"
+      >
+        <span style="font-weight: 600; font-size: small; margin: 0.5rem 0">New List</span>
 
-        <div>
-          <label>Name: </label>
-          <input class="form-control form-control--small" />
+        <div class="form-group">
+          <label style="font-size: small;">Name: </label>
+          <input class="form-control form-control--small" style="flex: 1;" />
         </div>
 
-        <div>
-          <label>Color: </label>
+        <div class="form-group">
+          <label style="font-size: small;">Color: </label>
           <input type="radio" />
         </div>
 
