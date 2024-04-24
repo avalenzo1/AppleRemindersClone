@@ -65,14 +65,14 @@ Reminders.Lists.create = (name, color = "blue") => {
       "color": "${color}",
       "tasks": [
         {
-          "id": 101,
+          "id": "${UUID()}",
           "content": "Buy milk",
           "due_date": "2024-04-30T10:00:00Z",
           "completed": false,
           "priority": "high"
         },
         {
-          "id": 102,
+          "id": "${UUID()}",
           "content": "Buy eggs",
           "due_date": null,
           "completed": false,
@@ -184,7 +184,7 @@ Reminders.Events.OnCategoryClick = (e) => {
 
     for (let i = 0; i < list.tasks.length; i++) {
       const li = `
-        <li>
+        <li class="checklist-item">
           ${list.tasks[i].content}
         </li>
       `;
