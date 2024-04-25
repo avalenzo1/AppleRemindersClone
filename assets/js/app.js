@@ -58,6 +58,7 @@ Reminders.Lists.setReminder = (listName, reminderId, newData) => {
   let list = Reminders.Lists.get(listName);
   
   console.log(listName)
+  console.log(newData)
   
   for (let i = 0; i < list.tasks.length; i++) {
     if (list.tasks[i].id === reminderId) {
@@ -137,10 +138,10 @@ Reminders.UserInterface.updateListInformation = () => {
       <input type="radio" id="category--${list.title}" name="category" value="${name}" hidden>
       <label class="btn" for="category--${list.title}">
         <div style="
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-">
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        ">
           <object
             type="image/svg+xml"
             data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/list.bullet.circle.fill.svg?v=1713913715875"
@@ -210,7 +211,7 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" rows="1">${list.tasks[i].content}</textarea>
+              outline: none;" rows="1" oninput="Reminders.Lists.setReminder('${name}', '${list.tasks[i].id}', { content: this.value })">${list.tasks[i].content}</textarea>
           </div>
         </li>
       `;
@@ -258,12 +259,6 @@ Reminders.Events.CreateDialogEventListener = () => {
 
   form.oninput = () => {
     console.log("Change detected");
-
-    if (listNameInput.value === "") {
-      listSubmitButton.disabled = true;
-    } else {
-      listSubmitButton.disabled = false;
-    }
     
     // Check if any listColorInput is checked
     let colorChecked = false;
@@ -274,7 +269,7 @@ Reminders.Events.CreateDialogEventListener = () => {
     });
     
     // Enable submit button only if a color is checked
-    listSubmitButton.disabled = !colorChecked;
+    listSubmitButton.disabled = (!colorChecked || listNameInput.value === "");
   };
 
   form.onsubmit = (e) => {
