@@ -142,7 +142,7 @@
         </button>
       </nav>
 
-      <main class="main">
+      <main id="main" class="main">
         <nav class="header">
           <div style="display: flex; justify-content: flex-end">
             <button class="btn">
@@ -170,7 +170,7 @@
         <div class="checklist-container">
           <div class="checklist-header">
             <div>
-              <span id="category-completed-size">0</span> Completed • <button class="btn btn-text">Clear</button>
+              <span id="category-completed-size">0</span> Completed • <button class="btn btn-text" disabled>Clear</button>
             </div>
             
             <button class="btn btn-text">
@@ -200,13 +200,13 @@
         <div class="form-group">
           <label style="font-size: small;">Color: </label>
           
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-red);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-orange);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-yellow);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-green);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-blue);" checked />
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-purple);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" style="--label-color: var(--rm-brown);" />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="red" style="--label-color: var(--rm-red);" />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="orange" style="--label-color: var(--rm-orange);" />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="yellow" style="--label-color: var(--rm-yellow);" />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="green" style="--label-color: var(--rm-green);" />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="blue" style="--label-color: var(--rm-blue);" checked />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="purple" style="--label-color: var(--rm-purple);" />
+          <input class="form-radio-input" type="radio" name="new_list_color" value="brown" style="--label-color: var(--rm-brown);" />
         </div>
 
         <hr />

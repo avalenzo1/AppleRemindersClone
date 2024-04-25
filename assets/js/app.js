@@ -159,6 +159,7 @@ Reminders.UserInterface.updateListInformation = () => {
 };
 
 Reminders.UserInterface.setActivePage = (name) => {
+  let main = document.getElementById("main");
   let title = document.getElementById("category-header-title");
   let counter = document.getElementById("category-header-size");
 
@@ -169,6 +170,7 @@ Reminders.UserInterface.setActivePage = (name) => {
 
     title.innerHTML = list.title;
     counter.innerHTML = list.tasks.length;
+    main.style = `--list-accent: var(--rm-${list.color});`
 
     ul.innerHTML = "";
     

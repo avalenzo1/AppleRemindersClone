@@ -58,7 +58,7 @@ hr {
 }
 
 .form-check-input {
-  --label-color: var(--rm-primary);
+  --label-color: var(--list-accent);
   border-radius: 1rem;
   appearance: none;
   padding: 0.4rem;
@@ -115,7 +115,7 @@ hr {
 
 .btn-text {
   background-color: transparent;
-  color: var(--rm-primary);
+  color: var(--list-accent);
   min-width: fit-content;
   border: none;
   padding: 2px;
@@ -189,7 +189,7 @@ hr {
 }
 
 input[type="radio"]:checked + .btn {
-  background-color: var(--rm-primary);
+  background-color: rgba(var(--rm-primary-rgb), 0.8);
 }
 
 .list-options {
@@ -271,6 +271,7 @@ input[type="radio"]:checked + .btn {
   background: rgb(var(--background-color-rgb));
   color: white;
   flex-direction: column;
+  --list-accent: var(--rm-blue);
 }
 
 .header {
