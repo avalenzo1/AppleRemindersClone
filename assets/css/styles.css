@@ -65,8 +65,6 @@ hr {
   color: var(--background-color);
   box-shadow: 0 0 0 1px rgb(90, 90, 90);
   margin: 0;
-  left: -2rem;
-  position: absolute;
 }
 
 .form-check-input:active {
@@ -198,14 +196,18 @@ input[type="radio"]:checked + .btn {
 
 .checklist {
   list-style-type: none;
-  padding-left: 3rem;
+  padding: 0;
 }
 
 .checklist .checklist-item {
   padding: 0.5rem 0;
   font-size: small;
-  border-bottom: solid 1px rgb(57, 57, 57);
+  
   position: relative;
+}
+
+.checklist .checklist-item:focus {
+  background-color: rgb(57, 57, 57);
 }
 
 .main {
