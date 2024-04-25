@@ -146,7 +146,7 @@ Reminders.UserInterface.setActivePage = (name) => {
     
     container.onclick = () => {
       const li = `
-        <li class="checklist-item" tabindex="0" data-new-checklist="true">
+        <li class="checklist-item" tabindex="0" data-new-reminder="true">
           <input class="form-check-input" type="checkbox"/>
           <div class="checklist-item--container">
             <textarea style="
@@ -155,12 +155,12 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" autofocus="true" rows="1"></textarea>
+              outline: none;" autofocus oninput="this.parentElement.dataset.newReminder = null" rows="1"></textarea>
           </div>
         </li>
       `;
       
-      if (document.querySelector("li[data-new-checklist='true']") == null)
+      if (document.querySelector("li[data-new-reminder='true']") == null)
       {
         ul.insertAdjacentHTML("beforeend", li);
       }
