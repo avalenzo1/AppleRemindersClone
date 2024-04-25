@@ -147,6 +147,7 @@ Reminders.Events.CreateDialogEventListener = () => {
   
   dialog.addEventListener("close", (event) => {
     listNameInput.value = '';
+    listSubmitButton.disabled = true;
   });
 
   closeButton.onclick = () => {
@@ -197,6 +198,7 @@ Reminders.Events.OnCategoryClick = (e) => {
     color: inherit;
     overflow: auto;
     resize: none;
+    outline: none;
 " rows="1">${list.tasks[i].content}</textarea>
           </div>
         </li>

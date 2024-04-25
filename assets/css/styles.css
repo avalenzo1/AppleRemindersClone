@@ -32,6 +32,7 @@ body {
     url(https://cdn.osxdaily.com/wp-content/uploads/2020/10/macos-big-sur-wallpaper-1-scaled.jpg);
   background-size: cover;
   color: var(--text-color);
+  overflow: hidden;
 }
 
 hr {
@@ -220,9 +221,11 @@ input[type="radio"]:checked + .btn {
 }
 
 .main {
+  display: flex;
   flex: 1;
   background: rgb(var(--background-color-rgb));
   color: white;
+  flex-direction: column;
 }
 
 .header {
@@ -307,4 +310,9 @@ dialog[open]::backdrop {
   gap: 0.75rem;
   align-items: center;
   margin-bottom: 0.5rem;
+}
+
+.checklist-container {
+    flex: 1;
+    overflow: auto;
 }
