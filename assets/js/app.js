@@ -174,9 +174,11 @@ Reminders.UserInterface.setActivePage = (name) => {
 
     ul.innerHTML = "";
     
-    let container = document.querySelector(".checklist-container");
+    let openSpace = document.querySelector(".checklist-space");
     
-    container.onclick = () => {
+    openSpace.onclick = () => {
+      if (document.querySelector("li[data-new-reminder]")) return;
+      
       const li = `
         <li id="${UUID()}" class="checklist-item" tabindex="0" data-new-reminder="true">
           <input class="form-check-input" type="checkbox" />
@@ -187,15 +189,12 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" autofocus oninput="this.removeAttribute('autofocus'); this.parentElement.parentElement.removeAttribute('data-new-reminder');" rows="1"></textarea>
+              outline: none;" autofocus onfocusout="" oninput="this.removeAttribute('autofocus'); this.parentElement.parentElement.removeAttribute('data-new-reminder');" rows="1"></textarea>
           </div>
         </li>
       `;
       
-      if (document.querySelector("li[data-new-reminder='true']") == null)
-      {
-        ul.insertAdjacentHTML("beforeend", li);
-      }
+      ul.insertAdjacentHTML("beforeend", li);
   
       
     };

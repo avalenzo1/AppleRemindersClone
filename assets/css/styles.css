@@ -221,6 +221,8 @@ input[type="radio"]:checked + .btn {
 .checklist-container {
   flex: 1;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .checklist {
@@ -363,4 +365,8 @@ dialog[open]::backdrop {
   .wrapper {
     flex-direction: column;
   }
+}
+
+.checklist-space {
+  flex: 1;
 }
