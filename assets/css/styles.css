@@ -281,7 +281,7 @@ dialog[open]::backdrop {
 .category-options .btn {
   width: 100%;
   flex-direction: row;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: flex-start;
   border-radius: 0.75rem;
   padding: 0.55rem;
