@@ -1,3 +1,4 @@
+
 console.log(
   "%c\uf8ff Reminders Clone",
   "font-family: 'SF Pro Display', sans-serif; font-size: large; background-color: black; color: white; border-radius: 0.5rem; padding: 5px;"
@@ -140,6 +141,32 @@ Reminders.UserInterface.setActivePage = (name) => {
     counter.innerHTML = list.tasks.length;
 
     ul.innerHTML = "";
+    
+    let container = document.querySelector(".checklist-container");
+    
+    container.onclick = () => {
+      const li = `
+        <li class="checklist-item" tabindex="0" data-new-checklist="true">
+          <input class="form-check-input" type="checkbox"/>
+          <div class="checklist-item--container">
+            <textarea style="
+              background-color: transparent;
+              border: none;
+              color: inherit;
+              overflow: auto;
+              resize: none;
+              outline: none;" rows="1"></textarea>
+          </div>
+        </li>
+      `;
+      
+      if (document.querySelector("li[data-new-checklist='true']") == null)
+      {
+        ul.insertAdjacentHTML("beforeend", li);
+      }
+  
+      
+    };
 
     for (let i = 0; i < list.tasks.length; i++) {
       const li = `
@@ -152,9 +179,7 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" rows="1">
-              ${list.tasks[i].content}
-            </textarea>
+              outline: none;" rows="1">${list.tasks[i].content}</textarea>
           </div>
         </li>
       `;
