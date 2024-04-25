@@ -48,8 +48,8 @@ Reminders.Lists.get = (name) => {
   return JSON.parse(localStorage.getItem(`list--${name}`));
 };
 
-Reminders.Lists.setReminder = (uuid, data) => {
-  console.log(uuid);
+Reminders.Lists.setReminder = (listName, reminderId, data) => {
+  console.log({listName, reminderId, data})
 }
 
 Reminders.Lists.create = (name, color = "blue") => {
@@ -137,8 +137,6 @@ Reminders.UserInterface.setActivePage = (name) => {
   let counter = document.getElementById("category-header-size");
 
   let ul = document.getElementById("list-container");
-  
-  ul.dataset.listName = name;
 
   try {
     let list = Reminders.Lists.get(name);
@@ -177,7 +175,7 @@ Reminders.UserInterface.setActivePage = (name) => {
     for (let i = 0; i < list.tasks.length; i++) {
       const li = `
         <li id="${list.tasks[i].id}" class="checklist-item" tabindex="0">
-          <input class="form-check-input" type="checkbox" onclick="Reminders.Lists.setReminder(this.parentElement.parentElement.id, this.parentElement.id, { completed: true });" />
+          <input class="form-check-input" type="checkbox" onclick="Reminders.Lists.setReminder(${name}, this.parentElement.id, { completed: true });" />
           <div class="checklist-item--container">
             <textarea style="
               background-color: transparent;
