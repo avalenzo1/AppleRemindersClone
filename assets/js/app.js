@@ -189,7 +189,7 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" autofocus onfocusout="" oninput="this.removeAttribute('autofocus'); this.parentElement.parentElement.removeAttribute('data-new-reminder');" rows="1"></textarea>
+              outline: none;" autofocus onfocusout="if (this.value === '') return;" oninput="this.removeAttribute('autofocus'); this.parentElement.parentElement.removeAttribute('data-new-reminder');" rows="1"></textarea>
           </div>
         </li>
       `;
@@ -238,13 +238,14 @@ Reminders.Events.CreateDialogEventListener = () => {
   let form = document.getElementById("new-list-form");
 
   let listNameInput = document.getElementById("new-list-name-field");
-  let listColorInput = document.querySelectorAll("input[name='new_list_color']");
+  let listColorInputs = document.querySelectorAll("input[name='new_list_color']");
 
   let listSubmitButton = document.getElementById("submit-new-list");
   
   dialog.addEventListener("close", (event) => {
     listNameInput.value = '';
     listSubmitButton.disabled = true;
+    listColorInputs[4].checked = true;
   });
 
   closeButton.onclick = () => {
@@ -266,7 +267,7 @@ Reminders.Events.CreateDialogEventListener = () => {
     
     // Check if any listColorInput is checked
     let colorChecked = false;
-    listColorInput.forEach(input => {
+    listColorInputs.forEach(input => {
       if (input.checked) {
         colorChecked = true;
       }
@@ -279,9 +280,10 @@ Reminders.Events.CreateDialogEventListener = () => {
   form.onsubmit = (e) => {
     // Get the value of the checked input for listColorInput
     let selectedColor;
-    listColorInput.forEach(input => {
+    listColorInputs.forEach(input => {
       if (input.checked) {
         selectedColor = input.value;
+        input.checked = false;
       }
     });
 
