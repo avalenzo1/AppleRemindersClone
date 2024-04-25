@@ -239,3 +239,18 @@ Reminders.Initialize = () => {
 };
 
 document.addEventListener("DOMContentLoaded", Reminders.Initialize);
+
+
+if (navigator.windowControlsOverlay) {
+  const titlebarAreaRect = navigator.windowControlsOverlay.getTitlebarAreaRect();
+  
+  console.log(navigator.windowControlsOverlay);
+  
+  // To hide the titlebar completely
+  navigator.windowControlsOverlay.setTitlebarAreaRect(
+    titlebarAreaRect.x,
+    titlebarAreaRect.y,
+    titlebarAreaRect.width,
+    0 // Set the height to 0 to hide the titlebar
+  );
+}
