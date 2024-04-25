@@ -48,9 +48,29 @@ Reminders.Lists.get = (name) => {
   return JSON.parse(localStorage.getItem(`list--${name}`));
 };
 
-Reminders.Lists.setReminder = (listName, reminderId, data) => {
-  console.log({listName, reminderId, data})
+Reminders.Lists.save = (listName, list) => {
+  
 }
+
+Reminders.Lists.setReminder = (listName, reminderId, newData) => {
+  let list = Reminders.Lists.get(listName);
+  
+  for (let i = 0; i < list.tasks.length; i++) {
+    if (list.tasks[i].id === reminderId) {
+      // Update existing reminder with newData
+      for (const key in newData) {
+        if (key !== 'id' && list.tasks[i][key] !== undefined) {
+          list.tasks[i][key] = newData[key];
+        }
+      }
+      break; // Exit loop once reminder is updated
+    }
+  }
+  
+  // Save the updated list
+  Reminders.Lists.save(listName, list);
+}
+
 
 Reminders.Lists.create = (name, color = "blue") => {
   let modifiedName = name;
