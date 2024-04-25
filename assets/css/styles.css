@@ -82,7 +82,7 @@ hr {
 }
 
 .btn {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   padding: 3px 10px;
@@ -198,6 +198,7 @@ input[type="radio"]:checked + .btn {
 .checklist {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .checklist .checklist-item {
@@ -327,11 +328,6 @@ dialog[open]::backdrop {
   gap: 0.75rem;
   align-items: center;
   margin-bottom: 0.5rem;
-}
-
-.checklist-container {
-    flex: 1;
-    overflow: auto;
 }
 
 @media only screen and (max-width: 600px) {
