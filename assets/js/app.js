@@ -175,7 +175,7 @@ Reminders.UserInterface.setActivePage = (name) => {
     for (let i = 0; i < list.tasks.length; i++) {
       const li = `
         <li id="${list.tasks[i].id}" class="checklist-item" tabindex="0">
-          <input class="form-check-input" type="checkbox" onclick="Reminders.Lists.setReminder(${name}, this.parentElement.id, { completed: true });" />
+          <input class="form-check-input" type="checkbox" onclick="Reminders.Lists.setReminder(${}, this.parentElement.id, { completed: true });" />
           <div class="checklist-item--container">
             <textarea style="
               background-color: transparent;
