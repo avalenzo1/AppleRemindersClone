@@ -200,7 +200,7 @@ input[type="radio"]:checked + .btn {
 }
 
 .checklist .checklist-item {
-  padding: 0 1rem;
+  padding-left: 1rem;
   font-size: small;
   position: relative;
   display: flex;
