@@ -48,6 +48,10 @@ Reminders.Lists.get = (name) => {
   return JSON.parse(localStorage.getItem(`list--${name}`));
 };
 
+Reminders.Lists.setReminder = (uuid, data) => {
+  console.log(uuid);
+}
+
 Reminders.Lists.create = (name, color = "blue") => {
   let modifiedName = name;
   let i = 0;
@@ -133,6 +137,8 @@ Reminders.UserInterface.setActivePage = (name) => {
   let counter = document.getElementById("category-header-size");
 
   let ul = document.getElementById("list-container");
+  
+  ul.dataset.listName = name;
 
   try {
     let list = Reminders.Lists.get(name);
@@ -146,7 +152,7 @@ Reminders.UserInterface.setActivePage = (name) => {
     
     container.onclick = () => {
       const li = `
-        <li class="checklist-item" tabindex="0" data-new-reminder="true">
+        <li id="${UUID()}" class="checklist-item" tabindex="0" data-new-reminder="true">
           <input class="form-check-input" type="checkbox"/>
           <div class="checklist-item--container">
             <textarea style="
@@ -155,7 +161,7 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" autofocus oninput="this.parentElement.dataset.newReminder = null" rows="1"></textarea>
+              outline: none;" autofocus oninput="this.parentElement.parentElement.removeAttribute('data-new-reminder')" rows="1"></textarea>
           </div>
         </li>
       `;
@@ -170,8 +176,8 @@ Reminders.UserInterface.setActivePage = (name) => {
 
     for (let i = 0; i < list.tasks.length; i++) {
       const li = `
-        <li class="checklist-item" tabindex="0">
-          <input class="form-check-input" type="checkbox"/>
+        <li id="${list.tasks[i].id}" class="checklist-item" tabindex="0">
+          <input class="form-check-input" type="checkbox" onclick="Reminders.Lists.setReminder(this.parentElement.parentElement.id, this.parentElement.id, { completed: true });" />
           <div class="checklist-item--container">
             <textarea style="
               background-color: transparent;
