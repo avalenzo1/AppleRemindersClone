@@ -127,9 +127,50 @@ Reminders.UserInterface.updateListInformation = () => {
   });
 };
 
+Reminders.UserInterface.setActivePage = (name) => {
+  let title = document.getElementById("category-header-title");
+  let counter = document.getElementById("category-header-size");
+
+  let ul = document.getElementById("list-container");
+
+  try {
+    let list = Reminders.Lists.get(name);
+
+    title.innerHTML = list.title;
+    counter.innerHTML = list.tasks.length;
+
+    ul.innerHTML = "";
+
+    for (let i = 0; i < list.tasks.length; i++) {
+      const li = `
+        <li class="checklist-item" tabindex="0">
+          <input class="form-check-input" type="checkbox"/>
+          <div class="checklist-item--container">
+            <textarea style="
+              background-color: transparent;
+              border: none;
+              color: inherit;
+              overflow: auto;
+              resize: none;
+              outline: none;" rows="1">
+              ${list.tasks[i].content}
+            </textarea>
+          </div>
+        </li>
+      `;
+
+      ul.insertAdjacentHTML("beforeend", li);
+    }
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
 Reminders.UserInterface.Initialize = () => {
   Reminders.UserInterface.updateListInformation();
 };
+
+
 
 Reminders.Events = {};
 
@@ -174,41 +215,7 @@ Reminders.Events.CreateDialogEventListener = () => {
 };
 
 Reminders.Events.OnCategoryClick = (e) => {
-  let title = document.getElementById("category-header-title");
-  let counter = document.getElementById("category-header-size");
-
-  let ul = document.getElementById("list-container");
-
-  try {
-    let list = Reminders.Lists.get(e.target.value);
-
-    title.innerHTML = list.title;
-    counter.innerHTML = list.tasks.length;
-
-    ul.innerHTML = "";
-
-    for (let i = 0; i < list.tasks.length; i++) {
-      const li = `
-        <li class="checklist-item" tabindex="0">
-          <input class="form-check-input" type="checkbox"/>
-          <div class="checklist-item--container">
-            <textarea style="
-    background-color: transparent;
-    border: none;
-    color: inherit;
-    overflow: auto;
-    resize: none;
-    outline: none;
-" rows="1">${list.tasks[i].content}</textarea>
-          </div>
-        </li>
-      `;
-
-      ul.insertAdjacentHTML("beforeend", li);
-    }
-  } catch (e) {
-    alert(e.message);
-  }
+  Reminders.UserInterface.setActivePage(e.target.value);
 };
 
 Reminders.Events.CreateCategoriesEventListener = () => {
