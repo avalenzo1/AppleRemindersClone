@@ -4,7 +4,7 @@
 }
 
 :root {
-  --background-color-rgb: 31,32,32;
+  --background-color-rgb: 31, 32, 32;
   --background-color: rgb(var(--background-color-rgb));
   --rm-red-rgb: 236, 85, 70;
   --rm-red: rgb(var(--rm-red-rgb));
@@ -113,6 +113,18 @@ hr {
   opacity: 0.5;
 }
 
+.btn-text {
+  background-color: transparent;
+  color: var(--rm-primary);
+  min-width: fit-content;
+  border: none;
+  padding: 2px;
+}
+
+.btn-text:active {
+  filter: brightness(1.25);
+}
+
 .form-control {
   position: relative;
   padding: 6px 14px;
@@ -195,6 +207,21 @@ input[type="radio"]:checked + .btn {
   padding: 0.5rem;
 }
 
+.checklist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px rgb(57, 57, 57);
+  margin: 0 1rem;
+  padding: 0.5rem 0;
+  font-size: small;
+}
+
+.checklist-container {
+  flex: 1;
+  overflow: auto;
+}
+
 .checklist {
   list-style-type: none;
   padding: 0;
@@ -217,7 +244,7 @@ input[type="radio"]:checked + .btn {
 .checklist-item .checklist-item--container {
   flex: 1;
   padding: 0.5rem 0;
-  border-bottom: solid 1px rgb(57,57,57);
+  border-bottom: solid 1px rgb(57, 57, 57);
   display: flex;
 }
 
@@ -227,15 +254,15 @@ input[type="radio"]:checked + .btn {
 }
 
 .checklist-item.checklist-item--dragover .checklist-item--container::before {
-    display: block;
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 2.5rem;
-    padding: 2px;
-    border-radius: 0.5rem;
-    border: solid 2px;
-    border-color: var(--rm-blue);
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 2.5rem;
+  padding: 2px;
+  border-radius: 0.5rem;
+  border: solid 2px;
+  border-color: var(--rm-blue);
 }
 
 .main {
@@ -333,5 +360,5 @@ dialog[open]::backdrop {
 @media only screen and (max-width: 600px) {
   .wrapper {
     flex-direction: column;
-    }
+  }
 }
