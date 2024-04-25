@@ -1,3 +1,5 @@
+@import url("/assets/css/palette.css");
+
 * {
   box-sizing: border-box;
   font-family: "SF Pro Display", sans-serif;
@@ -6,20 +8,7 @@
 :root {
   --background-color-rgb: 31, 32, 32;
   --background-color: rgb(var(--background-color-rgb));
-  --rm-red-rgb: 236, 85, 70;
-  --rm-red: rgb(var(--rm-red-rgb));
-  --rm-orange-rgb: 242, 163, 60;
-  --rm-orange: rgb(var(--rm-orange-rgb));
-  --rm-yellow-rgb: 249, 215, 74;
-  --rm-yellow: rgb(var(--rm-yellow-rgb));
-  --rm-green-rgb: 104, 206, 106;
-  --rm-green: rgb(var(--rm-green-rgb));
-  --rm-blue-rgb: 59, 130, 247;
-  --rm-blue: rgb(var(--rm-blue-rgb));
-  --rm-purple-rgb: 202, 131, 239;
-  --rm-purple: rgb(var(--rm-purple-rgb));
-  --rm-brown-rgb: 196, 167, 124;
-  --rm-brown: rgb(var(--rm-brown-rgb));
+
   --rm-primary-rgb: var(--rm-blue-rgb);
   --rm-primary: rgb(var(--rm-primary-rgb));
   --text-color-rgb: 255, 255, 255;

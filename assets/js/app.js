@@ -142,6 +142,9 @@ Reminders.UserInterface.updateListInformation = () => {
             align-items: center;
             gap: 0.5rem;
         ">
+          <svg class="sf-symbol" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="path/to/your/svg/file.svg#blue"></use>
+          </svg>
           <object
             type="image/svg+xml"
             data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/list.bullet.circle.fill.svg?v=1713913715875"
