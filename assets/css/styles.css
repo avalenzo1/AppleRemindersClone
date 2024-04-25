@@ -200,14 +200,23 @@ input[type="radio"]:checked + .btn {
 }
 
 .checklist .checklist-item {
-  padding: 0.5rem 0;
+  padding: 0 1rem;
   font-size: small;
-  
   position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .checklist .checklist-item:focus {
   background-color: rgb(57, 57, 57);
+}
+
+.checklist-item .checklist-item--container {
+  flex: 1;
+  padding: 0.5rem 0;
+  border-bottom: solid 1px rgb(57,57,57);
+  display: flex;
 }
 
 .main {

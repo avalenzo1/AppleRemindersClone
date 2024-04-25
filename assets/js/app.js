@@ -190,7 +190,15 @@ Reminders.Events.OnCategoryClick = (e) => {
       const li = `
         <li class="checklist-item" tabindex="0">
           <input class="form-check-input" type="checkbox"/>
-          <div>${list.tasks[i].content}</div>
+          <div class="checklist-item--container">
+            <textarea style="
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    overflow: auto;
+    resize: none;
+" rows="1">${list.tasks[i].content}</textarea>
+          </div>
         </li>
       `;
 
