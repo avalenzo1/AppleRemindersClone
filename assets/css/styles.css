@@ -316,3 +316,9 @@ dialog[open]::backdrop {
     flex: 1;
     overflow: auto;
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    flex-direction: column;
+    }
+}

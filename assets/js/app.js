@@ -155,7 +155,7 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" rows="1"></textarea>
+              outline: none;" autofocus="true" rows="1"></textarea>
           </div>
         </li>
       `;
