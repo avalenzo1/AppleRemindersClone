@@ -187,7 +187,7 @@ Reminders.UserInterface.setActivePage = (name) => {
               color: inherit;
               overflow: auto;
               resize: none;
-              outline: none;" autofocus oninput="this.parentElement.parentElement.removeAttribute('data-new-reminder')" rows="1"></textarea>
+              outline: none;" autofocus oninput="this.removeAttribute('autofocus'); this.parentElement.parentElement.removeAttribute('data-new-reminder');" rows="1"></textarea>
           </div>
         </li>
       `;
@@ -239,7 +239,7 @@ Reminders.Events.CreateDialogEventListener = () => {
   let form = document.getElementById("new-list-form");
 
   let listNameInput = document.getElementById("new-list-name-field");
-  let listColorInput;
+  let listColorInput = document.querySelectorAll("input[name='new_list_color']");
 
   let listSubmitButton = document.getElementById("submit-new-list");
   
@@ -264,12 +264,32 @@ Reminders.Events.CreateDialogEventListener = () => {
     } else {
       listSubmitButton.disabled = false;
     }
+    
+    // Check if any listColorInput is checked
+    let colorChecked = false;
+    listColorInput.forEach(input => {
+      if (input.checked) {
+        colorChecked = true;
+      }
+    });
+    
+    // Enable submit button only if a color is checked
+    listSubmitButton.disabled = !colorChecked;
   };
 
   form.onsubmit = (e) => {
-    Reminders.Lists.create(listNameInput.value);
+    // Get the value of the checked input for listColorInput
+    let selectedColor;
+    listColorInput.forEach(input => {
+      if (input.checked) {
+        selectedColor = input.value;
+      }
+    });
+
+    Reminders.Lists.create(listNameInput.value, selectedColor);
   };
 };
+
 
 Reminders.Events.OnCategoryClick = (e) => {
   Reminders.UserInterface.setActivePage(e.target.value);
