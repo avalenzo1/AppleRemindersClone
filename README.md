@@ -3,5 +3,5 @@
 ## Note
 This app is undergoing development, so it may have some bugs.
 
-## Future features
-Planning on adding google federated sign in to make a smooth transition from all devices.
+## Future Features
+I'm planning on adding Google's one-tap sign in to make a smooth transition from all devices.
