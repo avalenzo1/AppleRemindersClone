@@ -1,127 +1,121 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reminders</title>
 
-    <link
-      href="https://fonts.cdnfonts.com/css/sf-pro-display"
-      rel="stylesheet"
-    />
-    <link href="/assets/css/styles.css" rel="stylesheet" />
-    <script src="/assets/js/app.js" defer></script>
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#1f2020" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reminders</title>
 
-  <body>
-    <div class="wrapper">
-      <nav class="navbar" role="navigation" aria-label="Main">
-        <!--         <div>          <object
-          type="image/svg+xml"
-          data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/magnifyingglass.svg?v=1713905461488"
-          class="sf-symbol"
-        ></object>
-      </div> -->
-        <input class="form-control" id="search-query" placeholder="Search" />
+  <link href="/assets/css/sf-fonts.css" rel="stylesheet" />
+  <link href="/assets/css/styles.css" rel="stylesheet" />
+  <script src="/assets/js/app.js" defer></script>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1f2020" />
+</head>
 
-        <ul class="category-options">
-          <li>
-            <input
-              type="radio"
-              id="category--today"
-              name="category"
-              value="Today"
-              hidden
-            />
-            <label class="btn" for="category--today">
-              <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
-                <object
-                  type="image/svg+xml"
-                  data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/calendar.circle.fill.svg?v=1713927597458"
-                  class="sf-symbol"
-                ></object>
-                <span style="font-weight: 500;">Today</span>
-              </div>
-              <span style="font-size: large; font-weight: bold">0</span>
-            </label>
-          </li>
+<body>
+  <template id="checklist-template">
+    <nav class="header">
+      <div style="display: flex; justify-content: flex-end">
+        <button class="btn" id="add-reminder-btn">
+          <object width="16" height="16" type="image/svg+xml" data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/plus.svg?v=1713910740949" class="sf-symbol"></object>
+        </button>
+      </div>
 
-          <li>
-            <input
-              type="radio"
-              id="category--scheduled"
-              name="category"
-              value="Scheduled"
-              hidden
-            />
-            <label class="btn" for="category--scheduled">
-              <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
-                <object
-                  type="image/svg+xml"
-                  data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/calendar.circle.fill.svg?v=1713927597458"
-                  class="sf-symbol"
-                ></object>
-                <span style="font-weight: 500;"
-                  >Scheduled</span
-                >
-              </div>
-              <span style="font-size: large; font-weight: bold">0</span>
-            </label>
-          </li>
-          <li>
-            <input
-              type="radio"
-              id="category--all"
-              name="category"
-              value="All"
-              hidden
-            />
-            <label class="btn" for="category--all">
-              <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
-                <object
-                  type="image/svg+xml"
-                  data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/tray.circle.fill.svg?v=1713927668056"
-                  class="sf-symbol"
-                ></object>
-                <span style="font-weight: 500;">All</span>
-              </div>
-              <span style="font-size: large; font-weight: bold">0</span>
-            </label>
-          </li>
-          <li>
-            <input
-              type="radio"
-              id="category--completed"
-              name="category"
-              value="Completed"
-              hidden
-            />
-            <label class="btn" for="category--completed">
-              <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
-                <object
-                  type="image/svg+xml"
-                  data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/checkmark.circle.fill.svg?v=1713927693129"
-                  class="sf-symbol"
-                ></object>
-                <span style="font-weight: 500;"
-                  >Completed</span
-                >
-              </div>
-            </label>
-          </li>
-        </ul>
+      <div style="
+            display: flex;
+            justify-content: space-between;
+            color: var(--list-accent);
+            font-family: 'San Francisco Rounded';
+            font-size: xx-large;
+          ">
+        <span id="reminder-title" style="font-weight: bolder; font-family: inherit;"></span>
+        <span id="reminder-size" style="font-family: inherit;"></span>
+      </div>
+    </nav>
 
-        <div style="flex: 1; overflow: auto;">
-          <span style="font-size: small; color: gray">My Lists</span>
-          <ul class="list-options" id="list-options"></ul>
+    <div class="checklist-container">
+      <div class="checklist-header">
+        <div>
+          <span id="category-completed-size">0</span> Completed • <button class="btn btn-text" disabled>Clear</button>
         </div>
 
-        <button
-          class="btn"
-          id="open-new-list-dialog"
-          style="
+        <button class="btn btn-text">
+          Show
+        </button>
+      </div>
+
+      <ul class="checklist" id="list-container">
+
+      </ul>
+
+      <div class="checklist-space">
+        <!-- Click on me to add a reminder faster! -->
+      </div>
+    </div>
+  </template>
+
+  <div class="wrapper">
+    <nav class="navbar" role="navigation" aria-label="Main">
+      <input class="form-control" id="search-query" placeholder="Search" />
+
+      <ul class="category-options">
+        <li>
+          <input type="radio" id="category--today" name="view" data-type="category" value="Today" hidden />
+          <label class="btn" for="category--today">
+            <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
+              <object type="image/svg+xml" width="24" height="24"
+                data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/calendar.circle.fill.svg?v=1713927597458"
+                class="sf-symbol"></object>
+              <span style="font-weight: 500;">Today</span>
+            </div>
+            <span style="font-size: large; font-weight: bold">0</span>
+          </label>
+        </li>
+
+        <li>
+          <input type="radio" id="category--scheduled" name="view" data-type="category" value="Scheduled" hidden />
+          <label class="btn" for="category--scheduled">
+            <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
+              <object type="image/svg+xml" width="24" height="24"
+                data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/calendar.circle.fill.svg?v=1713927597458"
+                class="sf-symbol"></object>
+              <span style="font-weight: 500;">Scheduled</span>
+            </div>
+            <span style="font-size: large; font-weight: bold">0</span>
+          </label>
+        </li>
+        <li>
+          <input type="radio" id="category--all" name="view" data-type="category" value="All" hidden />
+          <label class="btn" for="category--all">
+            <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
+              <object type="image/svg+xml" width="24" height="24"
+                data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/tray.circle.fill.svg?v=1713927668056"
+                class="sf-symbol"></object>
+              <span style="font-weight: 500;">All</span>
+            </div>
+            <span style="font-size: large; font-weight: bold">0</span>
+          </label>
+        </li>
+        <li>
+          <input type="radio" id="category--completed" name="view" data-type="category" value="Completed" hidden />
+          <label class="btn" for="category--completed">
+            <div style="display: grid; gap: 0.25rem; color: rgba(255, 255, 255, 0.75);">
+              <object type="image/svg+xml" width="24" height="24"
+                data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/checkmark.circle.fill.svg?v=1713927693129"
+                class="sf-symbol"></object>
+              <span style="font-weight: 500;">Completed</span>
+            </div>
+          </label>
+        </li>
+      </ul>
+
+      <div style="flex: 1; overflow: auto;">
+        <span style="font-size: small; color: gray">My Lists</span>
+        <ul class="list-options" id="list-options"></ul>
+      </div>
+
+      <button class="btn" id="open-new-list-dialog" style="
             width: fit-content;
             background-color: transparent;
             color: gray;
@@ -130,94 +124,56 @@
             gap: 0.5rem;
             border: none;
             box-shadow: none;
-          "
-        >
-          <object
-            type="image/svg+xml"
-            data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/d56b63ee-7f52-4d9a-b45b-f8944b277784.plus.circle.svg?v=1713910627016"
-            class="sf-symbol"
-          ></object>
-          Add List
-        </button>
+          ">
+        <object type="image/svg+xml" width="13" height="13"
+          data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/d56b63ee-7f52-4d9a-b45b-f8944b277784.plus.circle.svg?v=1713910627016"
+          class="sf-symbol"></object>
+        Add List
+      </button>
+    </nav>
+
+    <main id="main" class="main">
+
+    </main>
+  </div>
+
+  <dialog id="new-list-dialog">
+    <form id="new-list-form" method="dialog" style="display: flex; flex: 0.5rem; flex-direction: column; gap: 0.5rem">
+      <span style="font-weight: 600; font-size: small; margin: 0.5rem 0">New List</span>
+
+      <div class="form-group">
+        <label style="font-size: small;" for="name-field">Name: </label>
+        <input id="new-list-name-field" name="new_list_name" class="form-control form-control--small"
+          style="flex: 1;" />
+      </div>
+
+      <div class="form-group">
+        <label style="font-size: small;">Color: </label>
+
+        <input class="form-radio-input" type="radio" name="new_list_color" value="red"
+          style="--label-color: var(--rm-red);" />
+        <input class="form-radio-input" type="radio" name="new_list_color" value="orange"
+          style="--label-color: var(--rm-orange);" />
+        <input class="form-radio-input" type="radio" name="new_list_color" value="yellow"
+          style="--label-color: var(--rm-yellow);" />
+        <input class="form-radio-input" type="radio" name="new_list_color" value="green"
+          style="--label-color: var(--rm-green);" />
+        <input class="form-radio-input" type="radio" name="new_list_color" value="blue"
+          style="--label-color: var(--rm-blue);" checked />
+        <input class="form-radio-input" type="radio" name="new_list_color" value="purple"
+          style="--label-color: var(--rm-purple);" />
+        <input class="form-radio-input" type="radio" name="new_list_color" value="brown"
+          style="--label-color: var(--rm-brown);" />
+      </div>
+
+      <hr />
+
+      <nav style="display: flex; justify-content: flex-end; gap: 0.5rem">
+        <button class="btn" id="close-new-list-dialog" type="button">Cancel</button>
+        <button class="btn" id="submit-new-list" type="submit" disabled>OK</button>
       </nav>
+    </form>
+  </dialog>
+</body>
 
-      <main id="main" class="main">
-        <nav class="header">
-          <div style="display: flex; justify-content: flex-end">
-            <button class="btn">
-              <object
-                type="image/svg+xml"
-                data="https://cdn.glitch.global/b58e06c1-3735-4bd9-8b6a-0b0c52f1797e/plus.svg?v=1713910740949"
-                class="sf-symbol"
-              ></object>
-            </button>
-          </div>
-
-          <div
-            style="
-              display: flex;
-              justify-content: space-between;
-              color: var(--list-accent);
-              font-size: xx-large;
-            "
-          >
-            <span id="category-header-title" style="font-weight: bold"></span>
-            <span id="category-header-size"></span>
-          </div>
-        </nav>
-        
-        <div class="checklist-container">
-          <div class="checklist-header">
-            <div>
-              <span id="category-completed-size">0</span> Completed • <button class="btn btn-text" disabled>Clear</button>
-            </div>
-            
-            <button class="btn btn-text">
-              Show
-            </button>
-          </div>
-          <ul class="checklist" id="list-container">
-            
-          </ul>
-          <div class="checklist-space">
-            <!-- Click on me to add a reminder faster! -->
-          </div>
-        </div>
-      </main>
-    </div>
-
-    <dialog id="new-list-dialog">
-      <form
-        id="new-list-form"
-        method="dialog"
-        style="display: flex; flex: 0.5rem; flex-direction: column; gap: 0.5rem"
-      >
-        <span style="font-weight: 600; font-size: small; margin: 0.5rem 0">New List</span>
-
-        <div class="form-group">
-          <label style="font-size: small;" for="name-field">Name: </label>
-          <input id="new-list-name-field" name="new_list_name" class="form-control form-control--small" style="flex: 1;" />
-        </div>
-
-        <div class="form-group">
-          <label style="font-size: small;">Color: </label>
-          
-          <input class="form-radio-input" type="radio" name="new_list_color" value="red" style="--label-color: var(--rm-red);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" value="orange" style="--label-color: var(--rm-orange);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" value="yellow" style="--label-color: var(--rm-yellow);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" value="green" style="--label-color: var(--rm-green);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" value="blue" style="--label-color: var(--rm-blue);" checked />
-          <input class="form-radio-input" type="radio" name="new_list_color" value="purple" style="--label-color: var(--rm-purple);" />
-          <input class="form-radio-input" type="radio" name="new_list_color" value="brown" style="--label-color: var(--rm-brown);" />
-        </div>
-
-        <hr />
-
-        <nav style="display: flex; justify-content: flex-end; gap: 0.5rem">
-          <button class="btn" id="close-new-list-dialog" type="button">Cancel</button>
-          <button class="btn" id="submit-new-list" type="submit" disabled>OK</button>
-        </nav>
-      </form>
-    </dialog>
-  </body>
 </html>

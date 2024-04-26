@@ -8,5 +8,10 @@
     }
   ],
   "start_url": "./index.html",
-  "display": "fullscreen"
+  "display": "standalone",
+  "menu": {
+    "about": "about.html",
+    "preferences": "settings.html",
+    "quit": true
+  }
 }

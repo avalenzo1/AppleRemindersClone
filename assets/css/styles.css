@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  font-family: "SF Pro Display", sans-serif;
 }
 
 :root {
@@ -97,7 +96,6 @@ hr {
   flex-direction: column;
   align-items: center;
   padding: 3px 10px;
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
   border-radius: 6px;
   color: var(--text-color);
   background: rgba(89, 89, 89);
@@ -130,6 +128,7 @@ hr {
   min-width: fit-content;
   border: none;
   padding: 2px;
+  box-shadow: none;
 }
 
 .btn-text:active {
@@ -260,6 +259,15 @@ input[type="radio"]:checked + .btn {
   padding: 0.5rem 0;
   border-bottom: solid 1px rgb(57, 57, 57);
   display: flex;
+}
+
+.checklist-item .checklist-item--input {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  overflow: auto;
+  resize: none;
+  outline: none;
 }
 
 .checklist-item.checklist-item--dragover .checklist-item--container {
